@@ -54,12 +54,17 @@ def bdot(x, y):
 
 
 def eclamp(x, lower, upper):
+    # print(type(x),type(lower))
     # In-place!!
     if type(lower) == type(x):
         assert x.size() == lower.size()
+    else:
+        lower = torch.Tensor(lower)
 
     if type(upper) == type(x):
         assert x.size() == upper.size()
+    else:
+        upper = torch.Tensor(upper)
 
     I = x < lower
     x[I] = lower[I] if not isinstance(lower, float) else lower
