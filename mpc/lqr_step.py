@@ -210,7 +210,7 @@ def LQRStep(n_state,
                         I = ub > ub_limit
                         ub[I] = ub_limit if isinstance(lb_limit, float) else ub_limit[I]
                     # TODO(eugenevinitsky) why do we need to do this here?
-                    new_ut = util.eclamp(new_ut, lb.double(), ub.double())
+                    new_ut = util.eclamp(new_ut, np.double(lb), np.double(ub))
                 new_u.append(new_ut)
 
                 new_xut = torch.cat((new_xt, new_ut), dim=1)
